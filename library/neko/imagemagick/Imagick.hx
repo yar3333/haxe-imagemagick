@@ -494,9 +494,9 @@ class Imagick
 		return nMagick_chop( __m, width, height, point );
 	}
 	
-	public function resize( w : Int, h : Int ) : Void
+	public function resize( w : Int, h : Int, filter : ImagickFilter, blur : Float ) : Void
 	{
-		nMagick_resize( __m, w, h );
+		nMagick_resize( __m, w, h, getFilterId(filter), blur );
 	}
 	
 	public function edge( r : Float ) : Void
@@ -1868,7 +1868,7 @@ class Imagick
 	static var nMagick_blur = neko.Lib.load("nMagick","nMagick_blur",3);
 	static var nMagick_border = neko.Lib.load("nMagick","nMagick_border",4);
 	static var nMagick_charcoal = neko.Lib.load("nMagick","nMagick_charcoal",3);
-	static var nMagick_resize = neko.Lib.load("nMagick","nMagick_resize",3);
+	static var nMagick_resize = neko.Lib.load("nMagick","nMagick_resize",5);
 	static var nMagick_edge = neko.Lib.load("nMagick","nMagick_edge",2);
 	static var nMagick_emboss = neko.Lib.load("nMagick","nMagick_emboss",3);
 
