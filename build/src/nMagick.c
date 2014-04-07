@@ -164,16 +164,18 @@ value nMagick_save( value magick, value file )
 	return val_true;
 }
 
-value nMagick_resize( value magick, value w, value h )
+value nMagick_resize( value magick, value w, value h, value filter, value blur )
 {
 	MagickWand *wand;
 
 	val_check_kind( magick, k_wand );
 	val_check( w, int );
 	val_check( h, int );
+	val_check( filter, int );
+	val_check( blur, number );
 
 	wand = WAND( magick );
-	return alloc_bool( MagickResizeImage( wand, val_int( w ), val_int( h ), CubicFilter, 1.0) );
+	return alloc_bool( MagickResizeImage( wand, val_int( w ), val_int( h ), val_int( filter ), val_number( blur )) );
 }
 
 /*
@@ -2981,7 +2983,7 @@ DEFINE_PRIM(nMagick_destroy,1);
 DEFINE_PRIM(nMagick_init,0);
 DEFINE_PRIM(nMagick_load,2);
 DEFINE_PRIM(nMagick_save,2);
-DEFINE_PRIM(nMagick_resize,3);
+DEFINE_PRIM(nMagick_resize,5);
 DEFINE_PRIM(nMagick_clear,1);
 DEFINE_PRIM(nMagick_adaptive_sharpen,3);
 DEFINE_PRIM(nMagick_adaptive_threshold,4);

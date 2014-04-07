@@ -73,7 +73,7 @@ class Imagick
 		#if php
 		pimg.resizeImage(w, h, php.imagemagick.Imagick.FILTER_LANCZOS, 1.0);
 		#elseif neko
-		nimg.resize(w, h); 
+		nimg.resize(w, h, neko.imagemagick.Imagick.ImagickFilter.Lanczos, 1.0); 
 		#end
 	}
 	
