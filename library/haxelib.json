@@ -6,6 +6,6 @@
   "contributors": ["yar3333"],
   "releasenote": "Resize(): filter and blur added.",
   "version": "1.5.0",
-  "url": "https://code.google.com/p/haxe-imagemagick",
+  "url": "https://bitbucket.org/yar3333/haxe-imagemagick",
   "dependencies": {}
 }
