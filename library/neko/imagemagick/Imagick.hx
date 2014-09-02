@@ -117,247 +117,6 @@ class Imagick
 		nMagick_clear( __m );
 	}
 	
-	public static function getNoiseType(noiseType:ImagickNoiseType) : Int
-	{
-		return switch (noiseType)
-		{
-			case Uniform:					1;
-			case Gaussian:					2;
-			case MultiplicativeGaussian:	3;
-			case Impulse:					4;
-			case Laplacian:					5;
-			default:						6;
-		}
-	}
-	
-	public static function getEvaluateOperator(op:ImagickEvaluateOperator) : Int
-	{
-		return switch (op)
-		{
-			case ImagickEvaluateOperator.Undefined:		0;
-			case ImagickEvaluateOperator.Add:			1;
-			case ImagickEvaluateOperator.And:			2;
-			case ImagickEvaluateOperator.Divide:		3;
-			case ImagickEvaluateOperator.LeftShift:		4;
-			case ImagickEvaluateOperator.Max:			5;
-			case ImagickEvaluateOperator.Min:			6;
-			case ImagickEvaluateOperator.Multiply:		7;
-			case ImagickEvaluateOperator.Or:			8;
-			case ImagickEvaluateOperator.RightShift:	9;
-			case ImagickEvaluateOperator.Set:			10;
-			case ImagickEvaluateOperator.Subtract:		11;
-			default:									12;
-		}
-	}
-	
-	public static function getColorSpaceInt(cs:ImagickColorSpace) : Int
-	{
-		return switch(cs)
-		{			
-			case RGB:				1;
-			case GRAY:				2;
-			case Transparent:		3;
-			case OHTA:				4;
-			case LAB:				5;
-			case XYZ:				6;
-			case YCbCr:				7;
-			case YCC:				8;
-			case YIQ:				9;
-			case YPbPr:				10;
-			case YUV:				11;
-			case CMYK:				12;
-			case sRGB:				13;
-			case HSB:				14;
-			case HSL:				15;
-			case HWB:				16;
-			default:				0;
-		}
-	}
-	
-	public static function getColorSpaceEnum(cs:Int) : ImagickColorSpace
-	{
-		return switch(cs)
-		{
-			case 1:		ImagickColorSpace.RGB;
-			case 2:		ImagickColorSpace.GRAY;
-			case 3:		ImagickColorSpace.Transparent;
-			case 4:		ImagickColorSpace.OHTA;
-			case 5:		ImagickColorSpace.LAB;
-			case 6:		ImagickColorSpace.XYZ;
-			case 7:		ImagickColorSpace.YCbCr;
-			case 8:		ImagickColorSpace.YCC;
-			case 9:		ImagickColorSpace.YIQ;
-			case 10:	ImagickColorSpace.YPbPr;
-			case 11:	ImagickColorSpace.YUV;
-			case 12:	ImagickColorSpace.CMYK;
-			case 13:	ImagickColorSpace.sRGB;
-			case 14:	ImagickColorSpace.HSB;
-			case 15:	ImagickColorSpace.HSL;
-			case 16:	ImagickColorSpace.HWB;
-			default:	ImagickColorSpace.Undefined;
-		}
-	}
-	
-	public static function getCompressionId(c:ImagickCompression) : Int
-	{
-		return switch(c)
-		{
-			case ImagickCompression.Undefined:		0;
-			case ImagickCompression.No:				1;
-			case ImagickCompression.BZip:			2;
-			case ImagickCompression.Fax:			3;
-			case ImagickCompression.Group4:			4;
-			case ImagickCompression.JPEG:			5;
-			case ImagickCompression.LosslessJPEG:	7;
-			case ImagickCompression.LZW:			8;
-			case ImagickCompression.RLE:			9;
-			default:								10;
-		}
-	}
-	
-	public static function getCompressionEnum(c:Int) : ImagickCompression
-	{
-		return switch(c)
-		{
-			case 0:	ImagickCompression.Undefined;
-			case 1:	ImagickCompression.No;
-			case 2:	ImagickCompression.BZip;
-			case 3:	ImagickCompression.Fax;
-			case 4:	ImagickCompression.Group4;
-			case 5:	ImagickCompression.JPEG;
-			case 7:	ImagickCompression.LosslessJPEG;
-			case 8:	ImagickCompression.LZW;
-			case 9:	ImagickCompression.RLE;
-			default:ImagickCompression.Zip;
-		}
-	}
-	
-	public static function getMetricId(c:ImagickMetric) : Int
-	{
-		return switch(c)
-		{
-			case ImagickMetric.Undefined:				0;
-			case ImagickMetric.MeanAbsoluteError:		1;
-			case ImagickMetric.MeanSquaredError:		2;
-			case ImagickMetric.PeakAbsoluteError:		3;
-			case ImagickMetric.PeakSignalToNoiseRatio:	4;
-			default:									5;
-		}
-	}
-	
-	public static function getDisposalMethodEnum(d:Int) : ImagickDisposalMethod
-	{
-		return switch(d)
-		{
-			case 1:		ImagickDisposalMethod.None;
-			case 2:		ImagickDisposalMethod.Background;
-			case 3:		ImagickDisposalMethod.Previous;
-			default:	ImagickDisposalMethod.Unrecognized;
-		}
-	}
-	
-	public static function getImageTypeId(t:ImagickImageType) : Int
-	{
-		return switch(t)
-		{
-			case ImagickImageType.Bilevel:				1;
-			case ImagickImageType.Grayscale:			2;
-			case ImagickImageType.GrayscaleMatte:		3;
-			case ImagickImageType.Palette:				4;
-			case ImagickImageType.PaletteMatte:			5;
-			case ImagickImageType.TrueColor:			6;
-			case ImagickImageType.TrueColorMatte:		7;
-			case ImagickImageType.ColorSeparation:		8;
-			case ImagickImageType.ColorSeparationMatte:	9;
-			case ImagickImageType.Optimize:				10;
-			default:									0;
-		}
-	}
-	
-	public static function getImageTypeEnum(t:Int) : ImagickImageType
-	{
-		return switch(t)
-		{
-			case 1:	ImagickImageType.Bilevel;
-			case 2:	ImagickImageType.Grayscale;
-			case 3:	ImagickImageType.GrayscaleMatte;
-			case 4:	ImagickImageType.Palette;
-			case 5:	ImagickImageType.PaletteMatte;
-			case 6:	ImagickImageType.TrueColor;
-			case 7:	ImagickImageType.TrueColorMatte;
-			case 8:	ImagickImageType.ColorSeparation;
-			case 9:	ImagickImageType.ColorSeparationMatte;
-			case 10:ImagickImageType.Optimize;
-			default:ImagickImageType.Undefined;
-		}
-	}
-	
-	public static function getResolutionUnitsId(u:ImagickResolutionUnits) : Int
-	{
-		return switch(u)
-		{
-			case ImagickResolutionUnits.PixelsPerInch:			1;
-			case ImagickResolutionUnits.PixelsPerCentimeter:	2;
-			default:											0;
-		}
-	}
-	
-	public static function getResolutionUnitsEnum(u:Int) : ImagickResolutionUnits
-	{
-		return switch(u)
-		{
-			case 1:		ImagickResolutionUnits.PixelsPerInch;
-			case 2:		ImagickResolutionUnits.PixelsPerCentimeter;
-			default:	ImagickResolutionUnits.Undefined;
-		}
-	}
-	
-	public static function getFilterId(f:ImagickFilter) : Int
-	{
-		return switch(f)
-		{
-			case ImagickFilter.Point:		1;
-			case ImagickFilter.Box:			2;
-			case ImagickFilter.Triangle:	3;
-			case ImagickFilter.Hermite:		4;
-			case ImagickFilter.Hanning:		5;
-			case ImagickFilter.Hamming:		6;
-			case ImagickFilter.Blackman:	7;
-			case ImagickFilter.Gaussian:	8;
-			case ImagickFilter.Quadratic:	9;
-			case ImagickFilter.Cubic:		0;
-			case ImagickFilter.Catrom:		11;
-			case ImagickFilter.Mitchell:	12;
-			case ImagickFilter.Lanczos:		13;
-			case ImagickFilter.Bessel:		14;
-			case ImagickFilter.Sinc:		15;
-			default:						0;
-		}
-	}
-	
-	public static function getFilterEnum(f:Int) : ImagickFilter
-	{
-		return switch(f)
-		{
-			case 1:		ImagickFilter.Point;
-			case 2:		ImagickFilter.Box;
-			case 3:		ImagickFilter.Triangle;
-			case 4:		ImagickFilter.Hermite;
-			case 5:		ImagickFilter.Hanning;
-			case 6:		ImagickFilter.Hamming;
-			case 7:		ImagickFilter.Blackman;
-			case 8:		ImagickFilter.Gaussian;
-			case 9:		ImagickFilter.Quadratic;
-			case 10:	ImagickFilter.Cubic;
-			case 11:	ImagickFilter.Catrom;
-			case 12:	ImagickFilter.Mitchell;
-			case 13:	ImagickFilter.Lanczos;
-			case 14:	ImagickFilter.Bessel;
-			case 15:	ImagickFilter.Sinc;
-			default:	ImagickFilter.Undefined;
-		}
-	}
-	
 	/*
 	@description	MagickAdaptiveSharpenImage() adaptively sharpens the image by 
 					sharpening more intensely near image edges and less intensely 
@@ -406,7 +165,7 @@ class Imagick
 	*/
 	public function addNoise( noise_type : ImagickNoiseType ) : Bool
 	{
-		return nMagick_add_noise( __m, getNoiseType( noise_type ) );
+		return nMagick_add_noise( __m, Type.enumIndex( noise_type ) );
 	}
 
 	/*
@@ -496,7 +255,7 @@ class Imagick
 	
 	public function resize( w : Int, h : Int, filter : ImagickFilter, blur : Float ) : Void
 	{
-		nMagick_resize( __m, w, h, getFilterId(filter), blur );
+		nMagick_resize( __m, w, h, Type.enumIndex(filter), blur );
 	}
 	
 	public function edge( r : Float ) : Void
@@ -666,9 +425,9 @@ class Imagick
 		11 = SubtractEvaluateOperator
 		12 = XorEvaluateOperator
 	*/
-	public function evaluate( op : ImagickEvaluateOperator, constant : Float )
+	public function evaluate( op : ImagickEvaluateOperator, constant : Float ) : Bool
 	{
-		return nMagick_evaluate( __m, getEvaluateOperator( op ), constant );
+		return nMagick_evaluate( __m, Type.enumIndex( op ), constant );
 	}
 
 	/*
@@ -900,7 +659,7 @@ class Imagick
 	*/
 	public function getColorSpace() : ImagickColorSpace
 	{
-		return getColorSpaceEnum( nMagick_get_colorspace( __m ) );
+		return Type.createEnumIndex(ImagickColorSpace, nMagick_get_colorspace( __m ) );
 	}
 
 	/*
@@ -927,7 +686,7 @@ class Imagick
 	*/
 	public function setColorSpace( colorspace : ImagickColorSpace )
 	{
-		nMagick_set_colorspace( __m, getColorSpaceInt( colorspace ) );
+		nMagick_set_colorspace( __m, Type.enumIndex( colorspace ) );
 		return null;
 	}
 
@@ -960,7 +719,7 @@ class Imagick
 	*/
 	public function getCompression() : ImagickCompression
 	{
-		return getCompressionEnum( nMagick_get_compression( __m ) );
+		return Type.createEnumIndex(ImagickCompression, nMagick_get_compression( __m ));
 	}
 
 	/*
@@ -979,10 +738,9 @@ class Imagick
 		ZipCompression = 10
 
 	*/
-	public function setCompression( c : ImagickCompression )
+	public function setCompression( c : ImagickCompression ) : Bool
 	{
-		nMagick_set_compression( __m, getCompressionId( c ) );
-		return null;
+		return nMagick_set_compression( __m, Type.enumIndex( c ) );
 	}
 
 	/*
@@ -1028,7 +786,7 @@ class Imagick
 	*/
 	public function getDistortion( ref : Imagick, metric : ImagickMetric ) : Float
 	{
-		return nMagick_get_distortion( __m, untyped ref.__m, getMetricId( metric ) );
+		return nMagick_get_distortion( __m, untyped ref.__m, Type.enumIndex( metric ) );
 	}
 	
 	/*
@@ -1050,9 +808,9 @@ class Imagick
 		BackgroundDispose = 2
 		PreviousDispose = 3
 	*/
-	public function getDispose()
+	public function getDispose() : ImagickDisposalMethod
 	{
-		return getDisposalMethodEnum( nMagick_get_dispose( __m ) );
+		return Type.createEnumIndex(ImagickDisposalMethod, nMagick_get_dispose( __m ) );
 	}
 
 	/*
@@ -1215,7 +973,7 @@ class Imagick
 	*/
 	public function getType() : ImagickImageType
 	{
-		return getImageTypeEnum( nMagick_get_type( __m ) );
+		return Type.createEnumIndex(ImagickImageType, nMagick_get_type( __m ) );
 	}
 
 	/*
@@ -1238,10 +996,9 @@ class Imagick
 		ColorSeparationMatteType = 9
 		OptimizeType = 10
 	*/
-	public function setType( t : ImagickImageType )
+	public function setType( t : ImagickImageType ) : Bool
 	{
-		nMagick_set_type( __m, getImageTypeId( t ) );
-		return null;
+		return nMagick_set_type( __m, Type.enumIndex( t ) );
 	}
 
 	/*
@@ -1254,7 +1011,7 @@ class Imagick
 	*/
 	public function getUnits() : ImagickResolutionUnits
 	{
-		return getResolutionUnitsEnum( nMagick_get_units( __m ) );
+		return Type.createEnumIndex(ImagickResolutionUnits, nMagick_get_units( __m ) );
 	}
 
 	/*
@@ -1265,10 +1022,9 @@ class Imagick
 		PixelsPerInchResolution = 1
 		PixelsPerCentimeterResolution = 2
 	*/
-	public function setUnits( u : ImagickResolutionUnits )
+	public function setUnits( u : ImagickResolutionUnits ) : Bool
 	{
-		nMagick_set_units( __m, getResolutionUnitsId( u ) );
-		return null;
+		return nMagick_set_units( __m, Type.enumIndex( u ) );
 	}
 
 	/*
@@ -1520,7 +1276,7 @@ class Imagick
 	*/
 	public function quantize( numColors : Int, colorspace : ImagickColorSpace, dither : Bool ) : Bool
 	{
-		return nMagick_quantize( __m, numColors, getColorSpaceInt( colorspace ), dither );
+		return nMagick_quantize( __m, numColors, Type.enumIndex( colorspace ), dither );
 	}
 
 	/*
@@ -1604,7 +1360,7 @@ class Imagick
 	*/
 	public function resample( x : Int, y : Int, filter : ImagickFilter, blur : Float ) : Bool
 	{
-		return nMagick_resample( __m, x, y, getFilterId( filter ), blur );
+		return nMagick_resample( __m, x, y, Type.enumIndex( filter ), blur );
 	}
 
 	/*
