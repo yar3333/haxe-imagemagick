@@ -29,131 +29,131 @@
 
 // ============================================================================
 
-void nMagick_pixel_finalize( value pixel )
+void nMagick_pixel_finalize(value pixel)
 {
-	DestroyPixelWand( PIXEL( pixel ) );
+	DestroyPixelWand(PIXEL(pixel));
 }
 
-value nMagick_pixel_close( value pixel )
+value nMagick_pixel_close(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	val_gc( pixel, NULL );
+	val_check_kind(pixel, k_pixel);
+	val_gc(pixel, NULL);
 	nMagick_pixel_finalize(pixel);
 	return val_null;
 }
 
-value nMagick_pixel_clear( value pixel )
+value nMagick_pixel_clear(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	ClearPixelWand( PIXEL( pixel ) );
+	val_check_kind(pixel, k_pixel);
+	ClearPixelWand(PIXEL(pixel));
 }
 
 value nMagick_pixel_new()
 {
 	PixelWand *pix = NewPixelWand();
-	value v = alloc_abstract( k_pixel, pix );
-	val_gc( v, nMagick_pixel_finalize );
+	value v = alloc_abstract(k_pixel, pix);
+	val_gc(v, nMagick_pixel_finalize);
 	return v;
 }
 
-value nMagick_pixel_get_alpha( value pixel )
+value nMagick_pixel_get_alpha(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	return alloc_float( PixelGetAlpha( PIXEL( pixel ) ) );
+	val_check_kind(pixel, k_pixel);
+	return alloc_float(PixelGetAlpha(PIXEL(pixel)));
 }
 
-value nMagick_pixel_set_alpha( value pixel, value alpha )
+value nMagick_pixel_set_alpha(value pixel, value alpha)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( alpha, float );
+	val_check_kind(pixel, k_pixel);
+	val_check(alpha, float);
 
-	PixelSetAlpha( PIXEL( pixel ), val_float( alpha ) );
+	PixelSetAlpha(PIXEL(pixel), val_float(alpha));
 }
 
-value nMagick_pixel_get_black( value pixel )
+value nMagick_pixel_get_black(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	return alloc_float( PixelGetBlack( PIXEL( pixel ) ) );
+	val_check_kind(pixel, k_pixel);
+	return alloc_float(PixelGetBlack(PIXEL(pixel)));
 }
 
-value nMagick_pixel_set_black( value pixel, value black )
+value nMagick_pixel_set_black(value pixel, value black)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( black, float );
+	val_check_kind(pixel, k_pixel);
+	val_check(black, float);
 
-	PixelSetBlack( PIXEL( pixel ), val_float( black ) );
+	PixelSetBlack(PIXEL(pixel), val_float(black));
 }
 
-value nMagick_pixel_get_red( value pixel )
+value nMagick_pixel_get_red(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	return alloc_float( PixelGetRed( PIXEL( pixel ) ) );
+	val_check_kind(pixel, k_pixel);
+	return alloc_float(PixelGetRed(PIXEL(pixel)));
 }
 
-value nMagick_pixel_set_red( value pixel, value red )
+value nMagick_pixel_set_red(value pixel, value red)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( red, float );
+	val_check_kind(pixel, k_pixel);
+	val_check(red, float);
 
-	PixelSetRed( PIXEL( pixel ), val_float( red ) );
+	PixelSetRed(PIXEL(pixel), val_float(red));
 }
 
-value nMagick_pixel_get_green( value pixel )
+value nMagick_pixel_get_green(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	return alloc_float( PixelGetGreen( PIXEL( pixel ) ) );
+	val_check_kind(pixel, k_pixel);
+	return alloc_float(PixelGetGreen(PIXEL(pixel)));
 }
 
-value nMagick_pixel_set_green( value pixel, value green )
+value nMagick_pixel_set_green(value pixel, value green)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( green, float );
+	val_check_kind(pixel, k_pixel);
+	val_check(green, float);
 
-	PixelSetGreen( PIXEL( pixel ), val_float( green ) );
+	PixelSetGreen(PIXEL(pixel), val_float(green));
 }
 
-value nMagick_pixel_get_blue( value pixel )
+value nMagick_pixel_get_blue(value pixel)
 {
-	val_check_kind( pixel, k_pixel );
-	return alloc_float( PixelGetBlue( PIXEL( pixel ) ) );
+	val_check_kind(pixel, k_pixel);
+	return alloc_float(PixelGetBlue(PIXEL(pixel)));
 }
 
-value nMagick_pixel_set_blue( value pixel, value blue )
+value nMagick_pixel_set_blue(value pixel, value blue)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( blue, float );
+	val_check_kind(pixel, k_pixel);
+	val_check(blue, float);
 	
-	PixelSetBlue( PIXEL( pixel ), val_float( blue ) );
+	PixelSetBlue(PIXEL(pixel), val_float(blue));
 }
 
-value nMagick_pixel_set_color( value pixel, value color )
+value nMagick_pixel_set_color(value pixel, value color)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( color, string );
+	val_check_kind(pixel, k_pixel);
+	val_check(color, string);
 	
-	return alloc_bool( PixelSetColor( PIXEL( pixel ), val_string( color ) ) );
+	return alloc_bool(PixelSetColor(PIXEL(pixel), val_string(color)));
 }
 
-value nMagick_pixel_set_color_count( value pixel, value count )
+value nMagick_pixel_set_color_count(value pixel, value count)
 {
-	val_check_kind( pixel, k_pixel );
-	val_check( count, int );
-	PixelSetColorCount( PIXEL( pixel ), val_int( count ) );
+	val_check_kind(pixel, k_pixel);
+	val_check(count, int);
+	PixelSetColorCount(PIXEL(pixel), val_int(count));
 	return val_null;
 }
 
-DEFINE_PRIM(nMagick_pixel_close,1);
-DEFINE_PRIM(nMagick_pixel_clear,1);
-DEFINE_PRIM(nMagick_pixel_new,0);
-DEFINE_PRIM(nMagick_pixel_get_alpha,1);
-DEFINE_PRIM(nMagick_pixel_set_alpha,2);
-DEFINE_PRIM(nMagick_pixel_get_black,1);
-DEFINE_PRIM(nMagick_pixel_set_black,2);
-DEFINE_PRIM(nMagick_pixel_get_red,1);
-DEFINE_PRIM(nMagick_pixel_set_red,2);
-DEFINE_PRIM(nMagick_pixel_get_green,1);
-DEFINE_PRIM(nMagick_pixel_set_green,2);
-DEFINE_PRIM(nMagick_pixel_get_blue,1);
-DEFINE_PRIM(nMagick_pixel_set_blue,2);
-DEFINE_PRIM(nMagick_pixel_set_color,2);
-DEFINE_PRIM(nMagick_pixel_set_color_count,2);
+DEFINE_PRIM(nMagick_pixel_close, 1);
+DEFINE_PRIM(nMagick_pixel_clear, 1);
+DEFINE_PRIM(nMagick_pixel_new, 0);
+DEFINE_PRIM(nMagick_pixel_get_alpha, 1);
+DEFINE_PRIM(nMagick_pixel_set_alpha, 2);
+DEFINE_PRIM(nMagick_pixel_get_black, 1);
+DEFINE_PRIM(nMagick_pixel_set_black, 2);
+DEFINE_PRIM(nMagick_pixel_get_red, 1);
+DEFINE_PRIM(nMagick_pixel_set_red, 2);
+DEFINE_PRIM(nMagick_pixel_get_green, 1);
+DEFINE_PRIM(nMagick_pixel_set_green, 2);
+DEFINE_PRIM(nMagick_pixel_get_blue, 1);
+DEFINE_PRIM(nMagick_pixel_set_blue, 2);
+DEFINE_PRIM(nMagick_pixel_set_color, 2);
+DEFINE_PRIM(nMagick_pixel_set_color_count, 2);

@@ -29,15 +29,15 @@
 
 // ============================================================================
 
-void nMagick_draw_finalize( value draw )
+void nMagick_draw_finalize(value draw)
 {
-	DestroyDrawingWand( DRAW( draw ) );
+	DestroyDrawingWand(DRAW(draw));
 }
 
-value nMagick_draw_close( value draw )
+value nMagick_draw_close(value draw)
 {
-	val_check_kind( draw, k_pixel );
-	val_gc( draw, NULL );
+	val_check_kind(draw, k_pixel);
+	val_gc(draw, NULL);
 	
 	nMagick_draw_finalize(draw);
 }
@@ -45,40 +45,40 @@ value nMagick_draw_close( value draw )
 value nMagick_draw_new()
 {
 	DrawingWand *draw = NewDrawingWand();
-	value v = alloc_abstract( k_draw, draw );
-	val_gc( v, nMagick_draw_finalize );
+	value v = alloc_abstract(k_draw, draw);
+	val_gc(v, nMagick_draw_finalize);
 	return v;
 }
 
-value nMagick_draw_clear( value draw )
+value nMagick_draw_clear(value draw)
 {
-	val_check_kind( draw, k_draw );
-	ClearDrawingWand( DRAW( draw ) );
+	val_check_kind(draw, k_draw);
+	ClearDrawingWand(DRAW(draw));
 }
 
-value nMagick_draw_destroy( value draw )
+value nMagick_draw_destroy(value draw)
 {
-	val_check_kind( draw, k_draw );
-	DestroyDrawingWand( DRAW( draw ) );
+	val_check_kind(draw, k_draw);
+	DestroyDrawingWand(DRAW(draw));
 }
 
 /*
 @description	Returns an identical copy of the DrawingWand.
 */
-value nMagick_draw_clone( value draw )
+value nMagick_draw_clone(value draw)
 {
-	val_check_kind( draw, k_draw );
-	DrawingWand *drw = DRAW( draw );
-	value v = alloc_abstract( k_draw, CloneDrawingWand( drw ) );
-	val_gc( v, nMagick_draw_finalize );
+	val_check_kind(draw, k_draw);
+	DrawingWand *drw = DRAW(draw);
+	value v = alloc_abstract(k_draw, CloneDrawingWand(drw));
+	val_gc(v, nMagick_draw_finalize);
 	return v;
 }
 
 
 
 
-DEFINE_PRIM(nMagick_draw_close,1);
-DEFINE_PRIM(nMagick_draw_new,0);
-DEFINE_PRIM(nMagick_draw_clear,1);
-DEFINE_PRIM(nMagick_draw_destroy,1);
-DEFINE_PRIM(nMagick_draw_clone,1);
+DEFINE_PRIM(nMagick_draw_close, 1);
+DEFINE_PRIM(nMagick_draw_new, 0);
+DEFINE_PRIM(nMagick_draw_clear, 1);
+DEFINE_PRIM(nMagick_draw_destroy, 1);
+DEFINE_PRIM(nMagick_draw_clone, 1);
