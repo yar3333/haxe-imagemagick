@@ -80,16 +80,16 @@ class Imagick
 	
 	public function newImage(w:Int, h:Int, color:ImagickPixel) : Void
 	{
-		nMagick_new( __m, w, h, color.__d );
+		nMagick_new(__m, w, h, color.__d);
 	}
 	
-	public function load( file : String ) : Void
+	public function load(file:String) : Void
 	{
-		if ( file != null && file != "")
+		if (file != null && file != "")
 		{
 			if (sys.FileSystem.exists(file))
 			{
-				nMagick_load( __m, untyped file.__s );
+				nMagick_load(__m, untyped file.__s);
 			}
 			else
 			{
@@ -99,77 +99,77 @@ class Imagick
 		}
 	}
 	
-	public function save( file : String ) : Void
+	public function save(file:String) : Void
 	{
-		if ( file != null && file != "" )
+		if (file != null && file != "")
 		{
-			nMagick_save( __m, untyped file.__s );
+			nMagick_save(__m, untyped file.__s);
 		}
 	}
 	
 	public function destroy() : Void
 	{
-		nMagick_destroy( __m );
+		nMagick_destroy(__m);
 	}
 
 	public function clear() : Void
 	{
-		nMagick_clear( __m );
+		nMagick_clear(__m);
 	}
 	
 	/**
-	 * MagickAdaptiveSharpenImage() adaptively sharpens the image by 
-	 * sharpening more intensely near image edges and less intensely 
-	 * far from edges. We sharpen the image with a Gaussian operator 
-	 * of the given radius and standard deviation (sigma). For reasonable 
-	 * results, radius should be larger than sigma. Use a radius of 0 
+	 * MagickAdaptiveSharpenImage() adaptively sharpens the image by
+	 * sharpening more intensely near image edges and less intensely
+	 * far from edges. We sharpen the image with a Gaussian operator
+	 * of the given radius and standard deviation (sigma). For reasonable
+	 * results, radius should be larger than sigma. Use a radius of 0
 	 * and MagickAdaptiveSharpenImage() selects a suitable radius for you.
 	 * @params radius	The radius of the Gaussian, in pixels, not counting the center pixel.
 	 * @params sigma	The standard deviation of the Gaussian, in pixels.
 	 */
-	public function adaptiveSharpen( radius : Float, sigma : Float ) : Bool
+	public function adaptiveSharpen(radius:Float, sigma:Float) : Bool
 	{
-		return nMagick_adaptive_sharpen( __m, radius, sigma );
+		return nMagick_adaptive_sharpen(__m, radius, sigma);
 	}
 
 	/**
-	 * MagickAdaptiveThresholdImage() selects an individual threshold 
-	 * for each pixel based on the range of intensity values in its local 
-	 * neighborhood. This allows for thresholding of an image whose 
+	 * MagickAdaptiveThresholdImage() selects an individual threshold
+	 * for each pixel based on the range of intensity values in its local
+	 * neighborhood. This allows for thresholding of an image whose
 	 * global intensity histogram doesn't contain distinctive peaks.
 	 * @params width	The width of the local neighborhood.
 	 * @params height	The height of the local neighborhood.
 	 * @params offset	The mean offset.
 	 */
-	public function adaptiveThreshold( width : Int, height : Int, offset : Int ) : Bool
+	public function adaptiveThreshold(width:Int, height:Int, offset:Int) : Bool
 	{
-		return nMagick_adaptive_threshold( __m, width, height, offset );
+		return nMagick_adaptive_threshold(__m, width, height, offset);
 	}
 
 	/**
 	 * Adds the specified images at the current image location.
 	 * @params nMagick	The image to add to the current image.
 	 */
-	public function addImage( m : Imagick ) : Bool
+	public function addImage(m:Imagick) : Bool
 	{
-		return nMagick_add_image( __m, untyped m.__m );
+		return nMagick_add_image(__m, untyped m.__m);
 	}
 
 	/**
 	 * Adds random noise to the image.
-	 * @params noise_type	The type of noise: UniformNoise = 1, GaussianNoise = 2, MultiplicativeGaussianNoise = 3, ImpulseNoise = 4, LaplacianNoise = 5, or PoissonNoise = 6.
+	 * @params noise_type	The type of noise.
 	 */
-	public function addNoise( noise_type : ImagickNoiseType ) : Bool
+	public function addNoise(noise_type:ImagickNoiseType) : Bool
 	{
-		return nMagick_add_noise( __m, Type.enumIndex( noise_type ) );
+		return nMagick_add_noise(__m, Type.enumIndex(noise_type));
 	}
 
 	/**
 	 * Transforms an image as dictated by the affine matrix of the drawing wand.
 	 * @params */
-	public function affineTransform( draw_magick : ImagickDraw ) : Bool
+	public function affineTransform(draw_magick:ImagickDraw) : Bool
 	{
-		return nMagick_affine_transform( __m, untyped draw_magick.__d );
+		return nMagick_affine_transform(__m, untyped draw_magick.__d);
 	}
 
 	/**
@@ -179,32 +179,32 @@ class Imagick
 	 * @params angle			rotate text relative to this angle.
 	 * @params text			text to draw.
 	 */
-	public function annotate( draw_magick : ImagickDraw, point : ImagickPoint, angle : Int, text : String ) : Bool
+	public function annotate(draw_magick:ImagickDraw, point:ImagickPoint, angle:Int, text:String) : Bool
 	{
-		return nMagick_annotate( __m, untyped draw_magick.__d, point, angle, untyped text.__s );
+		return nMagick_annotate(__m, untyped draw_magick.__d, point, angle, untyped text.__s);
 	}
 
 	/**
-	 * Like MagickThresholdImage() but forces all pixels below the threshold 
+	 * Like MagickThresholdImage() but forces all pixels below the threshold
 	 * into black while leaving all pixels above the threshold unchanged.
 	 * @params Threshold	The PixelWand.
 	 */
-	public function blackThreshold( threshold : ImagickPixel ) : Bool
+	public function blackThreshold(threshold:ImagickPixel) : Bool
 	{
-		return nMagick_black_threshold( __m, untyped threshold.__d );
+		return nMagick_black_threshold(__m, untyped threshold.__d);
 	}
 
 	/**
-	 * Blurs an image. We convolve the image with a gaussian operator 
-	 * of the given radius and standard deviation (sigma). For reasonable 
-	 * results, the radius should be larger than sigma. Use a radius of 0 
+	 * Blurs an image. We convolve the image with a gaussian operator
+	 * of the given radius and standard deviation (sigma). For reasonable
+	 * results, the radius should be larger than sigma. Use a radius of 0
 	 * and BlurImage() selects a suitable radius for you.
-	 * @params radius	The radius of the , in pixels, not counting the center pixel.
-	 * @params sigma	The standard deviation of the , in pixels.
+	 * @params radius	The radius of the, in pixels, not counting the center pixel.
+	 * @params sigma	The standard deviation of the, in pixels.
 	 */
-	public function blur( radius : Int, sigma : Int ) : Bool
+	public function blur(radius:Int, sigma:Int) : Bool
 	{
-		return nMagick_blur( __m, radius, sigma );
+		return nMagick_blur(__m, radius, sigma);
 	}
 
 	/**
@@ -213,9 +213,9 @@ class Imagick
 	 * @params width		The border width.
 	 * @params height		The border height.
 	 */
-	public function border( bordercolor : ImagickPixel, width : Int, height : Int ) : Bool
+	public function border(bordercolor:ImagickPixel, width:Int, height:Int) : Bool
 	{
-		return nMagick_border( __m, untyped bordercolor.__d, width, height );
+		return nMagick_border(__m, untyped bordercolor.__d, width, height);
 	}
 	
 	/**
@@ -223,9 +223,9 @@ class Imagick
 	 * @params radius	The radius of the Gaussian, in pixels, not counting the center pixel.
 	 * @params sigma		The standard deviation of the Gaussian, in pixels.
 	 */
-	public function charcoal( radius : Int, sigma : Int ) : Bool
+	public function charcoal(radius:Int, sigma:Int) : Bool
 	{
-		return nMagick_charcoal( __m, radius, sigma );
+		return nMagick_charcoal(__m, radius, sigma);
 	}
 	
 	/**
@@ -234,45 +234,45 @@ class Imagick
 	 * @params height	The region height.
 	 * @params point		x and y of the region offset.
 	 */
-	public function chop( width : Int, height : Int, point : ImagickPoint ) : Bool
+	public function chop(width:Int, height:Int, point:ImagickPoint) : Bool
 	{
-		return nMagick_chop( __m, width, height, point );
+		return nMagick_chop(__m, width, height, point);
 	}
 	
-	public function resize( w : Int, h : Int, filter : ImagickFilter, blur : Float ) : Void
+	public function resize(w:Int, h:Int, filter:ImagickFilter, blur:Float) : Void
 	{
-		nMagick_resize( __m, w, h, Type.enumIndex(filter), blur );
+		nMagick_resize(__m, w, h, Type.enumIndex(filter), blur);
 	}
 	
-	public function edge( r : Float ) : Void
+	public function edge(r:Float) : Void
 	{
-		nMagick_edge( __m, r );
+		nMagick_edge(__m, r);
 	}
 	
-	public function emboss( r : Float, s : Float ) : Void
+	public function emboss(r:Float, s:Float) : Void
 	{
-		nMagick_emboss( __m, r, s );
+		nMagick_emboss(__m, r, s);
 	}
 	
 	/**
-	 * Changes the color value of any pixel that matches target and 
-	 * is an immediate neighbor. If the method FillToBorderMethod 
-	 * is specified, the color value is changed for any neighbor 
+	 * Changes the color value of any pixel that matches target and
+	 * is an immediate neighbor. If the method FillToBorderMethod
+	 * is specified, the color value is changed for any neighbor
 	 * pixel that does not match the bordercolor member of image.
 	 * @params fill		The floodfill color pixel wand.
-	 * @params fuzz		By default target must match a particular pixel color 
-	 * exactly. However, in many cases two colors may differ by a small 
-	 * amount. The fuzz member of image defines how much tolerance is 
-	 * acceptable to consider two colors as the same. For example, 
-	 * set fuzz to 10 and the color red at intensities of 100 and 102 
-	 * respectively are now interpreted as the same color for the 
+	 * @params fuzz		By default target must match a particular pixel color
+	 * exactly. However, in many cases two colors may differ by a small
+	 * amount. The fuzz member of image defines how much tolerance is
+	 * acceptable to consider two colors as the same. For example,
+	 * set fuzz to 10 and the color red at intensities of 100 and 102
+	 * respectively are now interpreted as the same color for the
 	 * purposes of the floodfill.
 	 * @params bordercolor	The border color pixel wand.
 	 * @params point		The starting location of the operation.
 	 */
-	public function colorFloodFill( fill : ImagickPixel, fuzz : Float, bordercolor : ImagickPixel, point : ImagickPoint ) : Bool
+	public function colorFloodFill(fill:ImagickPixel, fuzz:Float, bordercolor:ImagickPixel, point:ImagickPoint) : Bool
 	{
-		return nMagick_colorfloodfill( __m, untyped fill.__d, fuzz, untyped bordercolor.__d, point );
+		return nMagick_colorfloodfill(__m, untyped fill.__d, fuzz, untyped bordercolor.__d, point);
 	}
 
 	/**
@@ -280,17 +280,17 @@ class Imagick
 	 * @params colorize	The colorize pixel wand.
 	 * @params opacity		The opacity pixel wand.
 	 */
-	public function colorize( colorize : ImagickPixel, opacity : ImagickPixel ) : Bool
+	public function colorize(colorize:ImagickPixel, opacity:ImagickPixel) : Bool
 	{
-		return nMagick_colorize( __m, untyped colorize.__d, untyped opacity.__d );
+		return nMagick_colorize(__m, untyped colorize.__d, untyped opacity.__d);
 	}
 
 	/**
 	 * Adds a comment to your image.
 	 * @params */
-	public function comment( text : String ) : Bool
+	public function comment(text:String) : Bool
 	{
-		return nMagick_comment( __m, untyped text.__s );
+		return nMagick_comment(__m, untyped text.__s);
 	}
 
 	/**
@@ -300,20 +300,20 @@ class Imagick
 	 *							to the image. The default is Over.
 	 * @params point			The column and row offset of the composited image.
 	 */
-	public function compositeImage( composite_wand : Imagick, composite : ImagickCompositeOperator, point : ImagickPoint ) : Bool
+	public function compositeImage(composite_wand:Imagick, composite:ImagickCompositeOperator, point:ImagickPoint) : Bool
 	{
-		return nMagick_composite( __m, untyped composite_wand.__m, Type.enumIndex(composite), point );
+		return nMagick_composite(__m, untyped composite_wand.__m, Type.enumIndex(composite), point);
 	}
 
 	/**
-	 * Enhances the intensity differences between the lighter and darker 
-	 * elements of the image. Set sharpen to a value other than 0 to 
+	 * Enhances the intensity differences between the lighter and darker
+	 * elements of the image. Set sharpen to a value other than 0 to
 	 * increase the image contrast otherwise the contrast is reduced.
 	 * @params sharpen	0 to reduce contrast, other int to increase contrast
 	 */
-	public function contrast( sharpen : Int ) : Bool
+	public function contrast(sharpen:Int) : Bool
 	{
-		return nMagick_contrast( __m, sharpen );
+		return nMagick_contrast(__m, sharpen);
 	}
 	
 	/**
@@ -321,10 +321,10 @@ class Imagick
 	 * @params order	The number of columns and rows in the filter kernel.
 	 * @params kernel	An array of doubles representing the convolution kernel.
 	 */
-	public function convolve( order : Int, kernal : Float ) : Bool
+	public function convolve(order:Int, kernal:Float) : Bool
 	{
 		// TODO : write a function to convert an array of values to an array of doubles
-		return nMagick_convolve( __m, order, kernal );
+		return nMagick_convolve(__m, order, kernal);
 	}
 
 	/**
@@ -333,9 +333,9 @@ class Imagick
 	 * @params height	The region height.
 	 * @params point	The region x,y offset.
 	 */
-	public function crop( width : Int, height : Int, point : ImagickPoint ) : Bool
+	public function crop(width:Int, height:Int, point:ImagickPoint) : Bool
 	{
-		return nMagick_crop( __m, width, height, point );
+		return nMagick_crop(__m, width, height, point);
 	}
 
 	/**
@@ -343,16 +343,16 @@ class Imagick
 	 */
 	public function despeckle()
 	{
-		return nMagick_despeckle( __m );
+		return nMagick_despeckle(__m);
 	}
 
 	/**
 	 * Renders the drawing wand on the current image.
 	 * @params drawing_wand	image to draw.
 	 */
-	public function draw( drawing_wand : Imagick ) : Bool
+	public function draw(drawing_wand:Imagick) : Bool
 	{
-		return nMagick_draw( __m, untyped drawing_wand.__m );
+		return nMagick_draw(__m, untyped drawing_wand.__m);
 	}
 
 	/**
@@ -360,7 +360,7 @@ class Imagick
 	 */
 	public function enhance() : Bool
 	{
-		return nMagick_enhance( __m );
+		return nMagick_enhance(__m);
 	}
 
 	/**
@@ -368,71 +368,71 @@ class Imagick
 	 */
 	public function equalize() : Bool
 	{
-		return nMagick_equalize( __m );
+		return nMagick_equalize(__m);
 	}
 
 	/**
-	 * Applys an arithmetic, relational, or logical expression to an image. 
-	 * Use these operators to lighten or darken an image, to increase or 
+	 * Applys an arithmetic, relational, or logical expression to an image.
+	 * Use these operators to lighten or darken an image, to increase or
 	 * decrease contrast in an image, or to produce the "negative" of an image.
 	 * @params op			A channel operator.
 	 * @params constant	A constant value.
 	 */
-	public function evaluate( op : ImagickEvaluateOperator, constant : Float ) : Bool
+	public function evaluate(op:ImagickEvaluateOperator, constant:Float) : Bool
 	{
-		return nMagick_evaluate( __m, Type.enumIndex( op ), constant );
+		return nMagick_evaluate(__m, Type.enumIndex(op), constant);
 	}
 
 	/**
-	 * Merges a sequence of images. This is useful for combining Photoshop 
+	 * Merges a sequence of images. This is useful for combining Photoshop
 	 * layers into a single image.
 	 */
 	public function flatten() : Bool
 	{
-		return nMagick_flatten( __m );
+		return nMagick_flatten(__m);
 	}
 
 	/**
-	 * Creates a vertical mirror image by reflecting the pixels around 
+	 * Creates a vertical mirror image by reflecting the pixels around
 	 * the central x-axis.
 	 */
 	public function verticalFlip() : Bool
 	{
-		return nMagick_flip( __m );
+		return nMagick_flip(__m);
 	}
 
 	/**
-	 * Creates a horizontal mirror image by reflecting the pixels around 
+	 * Creates a horizontal mirror image by reflecting the pixels around
 	 * the central y-axis.
 	 */
 	public function horizontalFlip() : Bool
 	{
-		return nMagick_flop( __m );
+		return nMagick_flop(__m);
 	}
 
 	/**
-	 * Gamma-corrects an image. The same image viewed on different 
-	 * devices will have perceptual differences in the way the image's 
-	 * intensities are represented on the screen. Specify individual gamma 
-	 * levels for the red, green, and blue channels, or adjust all three 
+	 * Gamma-corrects an image. The same image viewed on different
+	 * devices will have perceptual differences in the way the image's
+	 * intensities are represented on the screen. Specify individual gamma
+	 * levels for the red, green, and blue channels, or adjust all three
 	 * with the gamma parameter. Values typically range from 0.8 to 2.3.
 	 * @params channel		The channel.
 	 * @params level		Define the level of gamma correction.
 	 */
-	public function gammaImage( g : Float ) : Bool
+	public function gammaImage(g:Float) : Bool
 	{
-		return nMagick_gamma( __m, g );
+		return nMagick_gamma(__m, g);
 	}
 
 	/**
-	 * Blurs an image. We convolve the image with a Gaussian operator 
-	 * of the given radius and standard deviation (sigma). For reasonable 
+	 * Blurs an image. We convolve the image with a Gaussian operator
+	 * of the given radius and standard deviation (sigma). For reasonable
 	 * results, the radius should be larger than sigma. Use a radius of 0
 	 * and MagickGaussianBlurImage() selects a suitable radius for you.
 	 */
-	public function gaussianBlur( radius : Float, sigma : Float ) : Bool
+	public function gaussianBlur(radius:Float, sigma:Float) : Bool
 	{
-		return nMagick_gaussian_blur( __m, radius, sigma );
+		return nMagick_gaussian_blur(__m, radius, sigma);
 	}
 
 	/**
@@ -441,10 +441,10 @@ class Imagick
 	 * @params height	The region height.
 	 * @params point	The region offset.
 	 */
-	public function getRegion( width : Int, height : Int, point : ImagickPoint ) : Imagick
+	public function getRegion(width:Int, height:Int, point:ImagickPoint) : Imagick
 	{
 		var m = new Imagick();
-		untyped m.__m = nMagick_get_region( __m, width, height, point );
+		untyped m.__m = nMagick_get_region(__m, width, height, point);
 		return m;
 	}
 	
@@ -454,16 +454,16 @@ class Imagick
 	public function getBackgroundColor()
 	{
 		var p = new ImagickPixel();
-		untyped p.__d = nMagick_get_background_color( __m );
+		untyped p.__d = nMagick_get_background_color(__m);
 		return p;
 	}
 
 	/**
 	 * Sets the image background color.
 	 */
-	public function setBackgroundColor( color : ImagickPixel ) : Bool
+	public function setBackgroundColor(color:ImagickPixel) : Bool
 	{
-		return nMagick_set_background_color( __m, untyped color.__d );
+		return nMagick_set_background_color(__m, untyped color.__d);
 	}
 
 	/**
@@ -473,7 +473,7 @@ class Imagick
 	 */
 	public function getBlob() : String
 	{
-		return neko.Lib.nekoToHaxe( nMagick_get_blob( __m ) );
+		return neko.Lib.nekoToHaxe(nMagick_get_blob(__m));
 	}
 
 	/**
@@ -481,17 +481,17 @@ class Imagick
 	 */
 	public function getRedPrimary() : ImagickPoint
 	{
-		var o = nMagick_get_red_primary( __m );
-		return new ImagickPoint( o.x, o.y );
+		var o = nMagick_get_red_primary(__m);
+		return new ImagickPoint(o.x, o.y);
 	}
 
 	/**
 	 * Sets the chromaticy red primary point.
 	 * @params point	The chromaticity red primary point.
 	 */
-	public function setRedPrimary( point : ImagickPoint ) : Bool
+	public function setRedPrimary(point:ImagickPoint) : Bool
 	{
-		return nMagick_set_red_primary( __m, point );
+		return nMagick_set_red_primary(__m, point);
 	}
 
 	/**
@@ -499,17 +499,17 @@ class Imagick
 	 */
 	public function getGreenPrimary() : ImagickPoint
 	{
-		var o = nMagick_get_green_primary( __m );
-		return new ImagickPoint( o.x, o.y );
+		var o = nMagick_get_green_primary(__m);
+		return new ImagickPoint(o.x, o.y);
 	}
 
 	/**
 	 * Sets the chromaticy green primary point.
 	 * @params point	The chromaticity green primary point.
 	 */
-	public function setGreenPrimary( point : ImagickPoint ) : Bool
+	public function setGreenPrimary(point:ImagickPoint) : Bool
 	{
-		return nMagick_set_green_primary( __m, point );
+		return nMagick_set_green_primary(__m, point);
 	}
 
 	/**
@@ -517,17 +517,17 @@ class Imagick
 	 */
 	public function getBluePrimary() : ImagickPoint
 	{
-		var o = nMagick_get_blue_primary( __m );
-		return new ImagickPoint( o.x, o.y );
+		var o = nMagick_get_blue_primary(__m);
+		return new ImagickPoint(o.x, o.y);
 	}
 
 	/**
 	 * Sets the chromaticy blue primary point for the image.
 	 * @params point	The chromaticity blue primary point.
 	 */
-	public function setBluePrimary( point : ImagickPoint ) : Bool
+	public function setBluePrimary(point:ImagickPoint) : Bool
 	{
-		return nMagick_set_blue_primary( __m, point );
+		return nMagick_set_blue_primary(__m, point);
 	}
 
 	/**
@@ -536,7 +536,7 @@ class Imagick
 	public function getBorderColor() : ImagickPixel
 	{
 		var p = new ImagickPixel();
-		untyped p.__d = nMagick_get_border_color( __m );
+		untyped p.__d = nMagick_get_border_color(__m);
 		return p;
 	}
 
@@ -544,9 +544,9 @@ class Imagick
 	 * Sets the image border color.
 	 * @params border_color	Return the border color.
 	 */
-	public function setBorderColor( border_color : ImagickPixel ) : Bool
+	public function setBorderColor(border_color:ImagickPixel) : Bool
 	{
-		return nMagick_set_border_color( __m, untyped border_color.__d );
+		return nMagick_set_border_color(__m, untyped border_color.__d);
 	}
 
 	/**
@@ -554,10 +554,10 @@ class Imagick
 	 * @params index	The offset into the image colormap.
 	 * @params color	Return the colormap color in this wand.
 	 */
-	public function getColorMapColor( index : Int ) : ImagickPixel
+	public function getColorMapColor(index:Int) : ImagickPixel
 	{
 		var p = new ImagickPixel();
-		untyped p.__d = nMagick_get_colormap_color( __m, index );
+		untyped p.__d = nMagick_get_colormap_color(__m, index);
 		return p;
 	}
 	
@@ -566,9 +566,9 @@ class Imagick
 	 * @params index	The offset into the image colormap.
 	 * @params color	Set the colormap color in this wand.
 	 */
-	public function setColorMapColor( index : Int, color : ImagickPixel ) : Bool
+	public function setColorMapColor(index:Int, color:ImagickPixel) : Bool
 	{
-		return nMagick_set_colormap_color( __m, index, untyped color.__d );
+		return nMagick_set_colormap_color(__m, index, untyped color.__d);
 	}
 	
 	/**
@@ -576,7 +576,7 @@ class Imagick
 	 */
 	public function getColorsLength() : Int
 	{
-		return nMagick_get_colors_length( __m );
+		return nMagick_get_colors_length(__m);
 	}
 	
 	/**
@@ -584,20 +584,20 @@ class Imagick
 	 */
 	public function getColorSpace() : ImagickColorSpace
 	{
-		return Type.createEnumIndex(ImagickColorSpace, nMagick_get_colorspace( __m ) );
+		return Type.createEnumIndex(ImagickColorSpace, nMagick_get_colorspace(__m));
 	}
 
 	/**
 	 * Gets the image colorspace.
 	 */
-	public function setColorSpace( colorspace : ImagickColorSpace ) : Bool
+	public function setColorSpace(colorspace:ImagickColorSpace) : Bool
 	{
-		return nMagick_set_colorspace( __m, Type.enumIndex( colorspace ) );
+		return nMagick_set_colorspace(__m, Type.enumIndex(colorspace));
 	}
 
 	public function getComposite() : ImagickCompositeOperator
 	{
-		return Type.createEnumIndex(ImagickCompositeOperator, nMagick_get_composite( __m ));
+		return Type.createEnumIndex(ImagickCompositeOperator, nMagick_get_composite(__m));
 	}
 
 	public function setComposite(comp:ImagickCompositeOperator) : Bool
@@ -610,23 +610,23 @@ class Imagick
 	 */
 	public function getCompression() : ImagickCompression
 	{
-		return Type.createEnumIndex(ImagickCompression, nMagick_get_compression( __m ));
+		return Type.createEnumIndex(ImagickCompression, nMagick_get_compression(__m));
 	}
 
 	/**
 	 * Gets the image compression.
 	 */
-	public function setCompression( c : ImagickCompression ) : Bool
+	public function setCompression(c:ImagickCompression) : Bool
 	{
-		return nMagick_set_compression( __m, Type.enumIndex( c ) );
+		return nMagick_set_compression(__m, Type.enumIndex(c));
 	}
 
 	/**
 	 * Sets the image compression quality.
 	 */
-	public function setCompressionQuality( quality : Int ) : Bool
+	public function setCompressionQuality(quality:Int) : Bool
 	{
-		return nMagick_set_compression_quality( __m, quality );
+		return nMagick_set_compression_quality(__m, quality);
 	}
 
 	/**
@@ -634,23 +634,23 @@ class Imagick
 	 */
 	public function getDepth() : Int
 	{
-		return nMagick_get_depth( __m );
+		return nMagick_get_depth(__m);
 	}
 
 	/**
 	 * Sets the image depth.
 	 */
-	public function setDepth( depth : Int ) : Bool
+	public function setDepth(depth:Int) : Bool
 	{
-		return nMagick_set_depth( __m, depth );
+		return nMagick_set_depth(__m, depth);
 	}
 
 	/**
 	 * Compares an image to a reconstructed image and returns the specified distortion metric.
 	 */
-	public function getDistortion( ref : Imagick, metric : ImagickMetric ) : Float
+	public function getDistortion(ref:Imagick, metric:ImagickMetric) : Float
 	{
-		return nMagick_get_distortion( __m, untyped ref.__m, Type.enumIndex( metric ) );
+		return nMagick_get_distortion(__m, untyped ref.__m, Type.enumIndex(metric));
 	}
 	
 	/**
@@ -658,8 +658,8 @@ class Imagick
 	 */
 	public function getExtrema() : ImagickPoint
 	{
-		var p = nMagick_get_extrema( __m );
-		return new ImagickPoint( p.x, p.y );
+		var p = nMagick_get_extrema(__m);
+		return new ImagickPoint(p.x, p.y);
 	}
 
 	/**
@@ -667,7 +667,7 @@ class Imagick
 	 */
 	public function getDispose() : ImagickDisposalMethod
 	{
-		return Type.createEnumIndex(ImagickDisposalMethod, nMagick_get_dispose( __m ) );
+		return Type.createEnumIndex(ImagickDisposalMethod, nMagick_get_dispose(__m));
 	}
 
 	/**
@@ -675,9 +675,9 @@ class Imagick
 	 * Use MagickRelinquishMemory() to free the value when you are finished with it.
 	 * @params key		The key.
 	 */
-	public function getAttribute( key : String ) : String
+	public function getAttribute(key:String) : String
 	{
-		return neko.Lib.nekoToHaxe( nMagick_get_attribute( __m, untyped key.__s ) );
+		return neko.Lib.nekoToHaxe(nMagick_get_attribute(__m, untyped key.__s));
 	}
 
 	/**
@@ -685,9 +685,9 @@ class Imagick
 	 * @params key		The key.
 	 * @params attrib	Its value.
 	 */
-	public function setAttribute( key : String, attrib : String ) : Bool
+	public function setAttribute(key:String, attrib:String) : Bool
 	{
-		return nMagick_set_attribute( __m, untyped key.__s, untyped attrib.__s );
+		return nMagick_set_attribute(__m, untyped key.__s, untyped attrib.__s);
 	}
 
 	/**
@@ -695,15 +695,15 @@ class Imagick
 	 */
 	public function getFormat() : String
 	{
-		return neko.Lib.nekoToHaxe( nMagick_get_format( __m ) );
+		return neko.Lib.nekoToHaxe(nMagick_get_format(__m));
 	}
 
 	/**
 	 * Sets the format of a particular image in a sequence.
 	 */
-	public function setFormat( f : String ) : Bool
+	public function setFormat(f:String) : Bool
 	{
-		return nMagick_set_format( __m, untyped f.__s );
+		return nMagick_set_format(__m, untyped f.__s);
 	}
 
 	/**
@@ -711,15 +711,15 @@ class Imagick
 	 */
 	public function getGamma() : Float
 	{
-		return nMagick_get_gamma( __m );
+		return nMagick_get_gamma(__m);
 	}
 
 	/**
 	 * Sets the image gamma.
 	 */
-	public function setGamma( g : Float ) : Bool
+	public function setGamma(g:Float) : Bool
 	{
-		return nMagick_set_gamma( __m, g );
+		return nMagick_set_gamma(__m, g);
 	}
 
 	/**
@@ -727,15 +727,15 @@ class Imagick
 	 */
 	public function getMatte() : Bool
 	{
-		return nMagick_get_matte( __m );
+		return nMagick_get_matte(__m);
 	}
 
 	/**
 	 * sets the image matte channel.
 	 */
-	public function setMatte( m : Bool ) : Bool
+	public function setMatte(m:Bool) : Bool
 	{
-		return nMagick_set_matte( __m, m );
+		return nMagick_set_matte(__m, m);
 	}
 
 	/**
@@ -744,25 +744,25 @@ class Imagick
 	public function getMatteColor() : ImagickPixel
 	{
 		var p = new ImagickPixel();
-		untyped p.__d = nMagick_get_matte_color( __m );
+		untyped p.__d = nMagick_get_matte_color(__m);
 		return p;
 	}
 
 	/**
 	 * Sets the image matte color.
 	 */
-	public function setMatteColor( mc : ImagickPixel ) : Bool
+	public function setMatteColor(mc:ImagickPixel) : Bool
 	{
-		return nMagick_set_matte_color( __m, untyped mc.__d );
+		return nMagick_set_matte_color(__m, untyped mc.__d);
 	}
 
 	/**
 	 * Returns the color of the specified pixel.
 	 */
-	public function getPixelColor( pt : ImagickPoint ) : ImagickPixel
+	public function getPixelColor(pt:ImagickPoint) : ImagickPixel
 	{
 		var p = new ImagickPixel();
-		untyped p.__d = nMagick_get_pixel_color( __m, pt );
+		untyped p.__d = nMagick_get_pixel_color(__m, pt);
 		return p;
 	}
 
@@ -771,16 +771,16 @@ class Imagick
 	 */
 	public function getResolution() : ImagickPoint
 	{
-		var p = nMagick_get_resolution( __m );
-		return new ImagickPoint( p.x, p.y );
+		var p = nMagick_get_resolution(__m);
+		return new ImagickPoint(p.x, p.y);
 	}
 
 	/**
 	 * Sets the image X and Y resolution.
 	 */
-	public function setResolution( x : Int, y : Int ) : Bool
+	public function setResolution(x:Int, y:Int) : Bool
 	{
-		return nMagick_set_resolution( __m, x, y );
+		return nMagick_set_resolution(__m, x, y);
 	}
 
 	/**
@@ -788,7 +788,7 @@ class Imagick
 	 */
 	public function getSize() : Int
 	{
-		return nMagick_get_size( __m );
+		return nMagick_get_size(__m);
 	}
 
 	/**
@@ -797,15 +797,15 @@ class Imagick
 	 */
 	public function getType() : ImagickImageType
 	{
-		return Type.createEnumIndex(ImagickImageType, nMagick_get_type( __m ) );
+		return Type.createEnumIndex(ImagickImageType, nMagick_get_type(__m));
 	}
 
 	/**
 	 * sets the potential image type.
 	 */
-	public function setType( t : ImagickImageType ) : Bool
+	public function setType(t:ImagickImageType) : Bool
 	{
-		return nMagick_set_type( __m, Type.enumIndex( t ) );
+		return nMagick_set_type(__m, Type.enumIndex(t));
 	}
 
 	/**
@@ -813,15 +813,15 @@ class Imagick
 	 */
 	public function getUnits() : ImagickResolutionUnits
 	{
-		return Type.createEnumIndex(ImagickResolutionUnits, nMagick_get_units( __m ) );
+		return Type.createEnumIndex(ImagickResolutionUnits, nMagick_get_units(__m));
 	}
 
 	/**
 	 * Sets the image units of resolution.
 	 */
-	public function setUnits( u : ImagickResolutionUnits ) : Bool
+	public function setUnits(u:ImagickResolutionUnits) : Bool
 	{
-		return nMagick_set_units( __m, Type.enumIndex( u ) );
+		return nMagick_set_units(__m, Type.enumIndex(u));
 	}
 
 	/**
@@ -829,8 +829,8 @@ class Imagick
 	 */
 	public function getWhitePoint() : ImagickPoint
 	{
-		var p = nMagick_get_white_point( __m );
-		return new ImagickPoint( p.x, p.y );
+		var p = nMagick_get_white_point(__m);
+		return new ImagickPoint(p.x, p.y);
 	}
 
 	/**
@@ -838,9 +838,9 @@ class Imagick
 	 * @params x	The horizontal location.
 	 * @params y	The vertical location.
 	 */
-	public function setWhitePoint( p : ImagickPoint )
+	public function setWhitePoint(p:ImagickPoint)
 	{
-		nMagick_set_white_point( __m, p.x, p.y );
+		nMagick_set_white_point(__m, p.x, p.y);
 		return null;
 	}
 
@@ -849,7 +849,7 @@ class Imagick
 	 */
 	public function getWidth() : Int
 	{
-		return nMagick_get_width( __m );
+		return nMagick_get_width(__m);
 	}
 
 	/**
@@ -857,42 +857,42 @@ class Imagick
 	 */
 	public function getHeight() : Int
 	{
-		return nMagick_get_height( __m );
+		return nMagick_get_height(__m);
 	}
 
 	/**
 	 * Creates an implode effect.
 	 */
-	public function implode( radius : Float ) : Bool
+	public function implode(radius:Float) : Bool
 	{
-		return nMagick_implode( __m, radius );
+		return nMagick_implode(__m, radius);
 	}
 
 	/**
 	 * Adds a label to your image.
 	 * @params Label	The label to add to your image.
 	 */
-	public function label( text : String ) : Bool
+	public function label(text:String) : Bool
 	{
-		return nMagick_label( __m, untyped label.__s );
+		return nMagick_label(__m, untyped label.__s);
 	}
 
 	/**
-	 * MagickLevelImage() adjusts the levels of an image by scaling the 
-	 * colors falling between specified white and black points to the full 
-	 * available quantum range. The parameters provided represent the black, 
-	 * mid, and white points. The black point specifies the darkest color 
-	 * in the image. Colors darker than the black point are set to zero. 
-	 * Mid point specifies a gamma correction to apply to the image. White 
-	 * point specifies the lightest color in the image. Colors brighter 
+	 * MagickLevelImage() adjusts the levels of an image by scaling the
+	 * colors falling between specified white and black points to the full
+	 * available quantum range. The parameters provided represent the black,
+	 * mid, and white points. The black point specifies the darkest color
+	 * in the image. Colors darker than the black point are set to zero.
+	 * Mid point specifies a gamma correction to apply to the image. White
+	 * point specifies the lightest color in the image. Colors brighter
 	 * than the white point are set to the maximum quantum value.
 	 * @params black_point		The black point.
 	 * @params gamma			The gamma.
 	 * @params white_point		The white point.
 	 */
-	public function level( blackPoint : Float, gamma : Float, whitePoint : Float ) : Bool
+	public function level(blackPoint:Float, gamma:Float, whitePoint:Float) : Bool
 	{
-		return nMagick_level( __m, blackPoint, gamma, whitePoint );
+		return nMagick_level(__m, blackPoint, gamma, whitePoint);
 	}
 
 	/**
@@ -900,26 +900,26 @@ class Imagick
 	 */
 	public function magnify() : Bool
 	{
-		return nMagick_magnify( __m );
+		return nMagick_magnify(__m);
 	}
 
 	/**
 	 * Replaces the colors of an image with the closest color from a reference image.
 	 */
-	public function map( magickb : Imagick, dither : Bool ) : Bool
+	public function map(magickb:Imagick, dither:Bool) : Bool
 	{
-		return nMagick_map( __m, untyped magickb.__m, dither );
+		return nMagick_map(__m, untyped magickb.__m, dither);
 	}
 
 	/**
-	 * Applies a digital filter that improves the quality of a noisy image. 
-	 * Each pixel is replaced by the median in a set of neighboring pixels 
+	 * Applies a digital filter that improves the quality of a noisy image.
+	 * Each pixel is replaced by the median in a set of neighboring pixels
 	 * as defined by radius.
 	 * @params radius	The radius of the pixel neighborhood.
 	 */
-	public function medianFilter( radius : Float ) : Bool
+	public function medianFilter(radius:Float) : Bool
 	{
-		return nMagick_median_filter( __m, radius );
+		return nMagick_median_filter(__m, radius);
 	}
 
 	/**
@@ -927,177 +927,177 @@ class Imagick
 	 */
 	public function minify() : Bool
 	{
-		return nMagick_minify( __m );
+		return nMagick_minify(__m);
 	}
 
 	/**
-	 * Lets you control the brightness, saturation, and hue of an image. 
-					Hue is the percentage of absolute rotation from the current position. 
-					For example 50 results in a counter-clockwise rotation of 90 degrees, 
-					150 results in a clockwise rotation of 90 degrees, with 0 and 200 
+	 * Lets you control the brightness, saturation, and hue of an image.
+					Hue is the percentage of absolute rotation from the current position.
+					For example 50 results in a counter-clockwise rotation of 90 degrees,
+					150 results in a clockwise rotation of 90 degrees, with 0 and 200
 					both resulting in a rotation of 180 degrees.
-					To increase the color brightness by 20 and decrease the color 
+					To increase the color brightness by 20 and decrease the color
 					saturation by 10 and leave the hue unchanged, use: 120,90,100.
 	 * @params brightness		The percent change in brighness.
 	 * @params saturation		The percent change in saturation.
 	 * @params hue				The percent change in hue.
 	 */
-	public function modulate( brightness : Float, saturation : Float, hue : Float ) : Bool
+	public function modulate(brightness:Float, saturation:Float, hue:Float) : Bool
 	{
-		return nMagick_modulate( __m, brightness, saturation, hue );
+		return nMagick_modulate(__m, brightness, saturation, hue);
 	}
 
 	/**
-	 * Simulates motion blur. We convolve the image with a Gaussian 
-					operator of the given radius and standard deviation (sigma). 
-					For reasonable results, radius should be larger than sigma. 
-					Use a radius of 0 and MotionBlurImage() selects a suitable radius 
+	 * Simulates motion blur. We convolve the image with a Gaussian
+					operator of the given radius and standard deviation (sigma).
+					For reasonable results, radius should be larger than sigma.
+					Use a radius of 0 and MotionBlurImage() selects a suitable radius
 					for you. Angle gives the angle of the blurring motion.
-	 * @params radius		The radius of the Gaussian, in pixels, not counting 
+	 * @params radius		The radius of the Gaussian, in pixels, not counting
 					the center pixel.
 	 * @params sigma		The standard deviation of the Gaussian, in pixels.
 	 * @params angle		Apply the effect along this angle.
 	 */
-	public function motionBlur( radius : Float, sigma : Float, angle : Float ) : Bool
+	public function motionBlur(radius:Float, sigma:Float, angle:Float) : Bool
 	{
-		return nMagick_motion_blur( __m, radius, sigma, angle );
+		return nMagick_motion_blur(__m, radius, sigma, angle);
 	}
 
 	/**
-	 * Negates the colors in the reference image. The Greyscale option 
+	 * Negates the colors in the reference image. The Greyscale option
 	 * means that only greyscale values within the image are negated.
 	 * @params grey	If MagickTrue, only negate grayscale pixels within the image.
 	 */
-	public function negate( grey : Bool ) : Bool
+	public function negate(grey:Bool) : Bool
 	{
-		return nMagick_negate( __m, grey );
+		return nMagick_negate(__m, grey);
 	}
 
 	/**
-	 * Enhances the contrast of a color image by adjusting the pixels 
+	 * Enhances the contrast of a color image by adjusting the pixels
 	 * color to span the entire range of colors available
 	 */
 	public function normalize() : Bool
 	{
-		return nMagick_normalize( __m );
+		return nMagick_normalize(__m);
 	}
 
 	/**
-	 * Applies a special effect filter that simulates an oil painting. 
-	 * Each pixel is replaced by the most frequent color occurring in a 
+	 * Applies a special effect filter that simulates an oil painting.
+	 * Each pixel is replaced by the most frequent color occurring in a
 	 * circular region defined by radius.
 	 * @params radius	The radius of the circular neighborhood.
 	 */
-	public function oilPainting( radius : Float ) : Bool
+	public function oilPainting(radius:Float) : Bool
 	{
-		return nMagick_oil_painting( __m, radius );
+		return nMagick_oil_painting(__m, radius);
 	}
 
 	/**
 	 * changes any pixel that matches color with the color defined by fill.
 	 * @params target		Change this target color to specified opacity value within the image.
 	 * @params opacity		The replacement opacity value.
-	 * @params fuzz			By default target must match a particular pixel color 
-	 *						exactly. However, in many cases two colors may differ by a small 
-	 *						amount. The fuzz member of image defines how much tolerance is 
-	 *						acceptable to consider two colors as the same. For example, set fuzz 
-	 *						to 10 and the color red at intensities of 100 and 102 respectively 
+	 * @params fuzz			By default target must match a particular pixel color
+	 *						exactly. However, in many cases two colors may differ by a small
+	 *						amount. The fuzz member of image defines how much tolerance is
+	 *						acceptable to consider two colors as the same. For example, set fuzz
+	 *						to 10 and the color red at intensities of 100 and 102 respectively
 	 *						are now interpreted as the same color for the purposes of the floodfill.
 	 */
-	public function paintTransparent( target : ImagickPixel, opacity : Float, fuzz : Float ) : Bool
+	public function paintTransparent(target:ImagickPixel, opacity:Float, fuzz:Float) : Bool
 	{
-		return nMagick_paint_transparent( __m, untyped target.__d, opacity, fuzz );
+		return nMagick_paint_transparent(__m, untyped target.__d, opacity, fuzz);
 	}
 
 	/**
 	 * Reduces the image to a limited number of color levels.
-	 * @params levels	Number of color levels allowed in each channel. 
+	 * @params levels	Number of color levels allowed in each channel.
 	 *					Very low values (2, 3, or 4) have the most visible effect.
-	 * @params dither	Set this integer value to something other than 
+	 * @params dither	Set this integer value to something other than
 	 *					zero to dither the mapped image.
 	 */
-	public function posterize( levels : Int, dither : Bool ) : Bool
+	public function posterize(levels:Int, dither:Bool) : Bool
 	{
-		return nMagick_posterize( __m, levels, dither );
+		return nMagick_posterize(__m, levels, dither);
 	}
 
 	/**
-	 * Analyzes the colors within a reference image and chooses a fixed 
-	 * number of colors to represent the image. The goal of the algorithm 
-	 * is to minimize the color difference between the input and output 
+	 * Analyzes the colors within a reference image and chooses a fixed
+	 * number of colors to represent the image. The goal of the algorithm
+	 * is to minimize the color difference between the input and output
 	 * image while minimizing the processing time.
 	 * @params number_colors	The number of colors.
 	 * @params colorspace		Perform color reduction in this colorspace, typically RGBColorspace.
-	 * @params dither			A value other than zero distributes the difference 
-	 *							between an original image and the corresponding color reduced image 
+	 * @params dither			A value other than zero distributes the difference
+	 *							between an original image and the corresponding color reduced image
 	 *							to neighboring pixels along a Hilbert curve.
-	 * @params measure_error	A value other than zero measures the difference 
-	 *							between	the original and quantized images. This difference is the 
-	 *							total quantization error. The error is computed by summing over all 
-	 *							pixels in an image the distance squared in RGB space between each 
+	 * @params measure_error	A value other than zero measures the difference
+	 *							between	the original and quantized images. This difference is the
+	 *							total quantization error. The error is computed by summing over all
+	 *							pixels in an image the distance squared in RGB space between each
 	 *							reference pixel value and its quantized value.
 	 */
-	public function quantize( numColors : Int, colorspace : ImagickColorSpace, dither : Bool ) : Bool
+	public function quantize(numColors:Int, colorspace:ImagickColorSpace, dither:Bool) : Bool
 	{
-		return nMagick_quantize( __m, numColors, Type.enumIndex( colorspace ), dither );
+		return nMagick_quantize(__m, numColors, Type.enumIndex(colorspace), dither);
 	}
 
 	/**
 	 * Radial blurs an image.
 	 * @params angle	The angle of the blur in degrees.
 	 */
-	public function radialBlur( angle : Float ) : Bool
+	public function radialBlur(angle:Float) : Bool
 	{
-		return nMagick_radial_blur( __m, angle );
+		return nMagick_radial_blur(__m, angle);
 	}
 
 	/**
-	 * creates a simulated three-dimensional button-like effect by 
-	 * lightening and darkening the edges of the image. Members width 
-	 * and height of raise_info define the width of the vertical and 
+	 * creates a simulated three-dimensional button-like effect by
+	 * lightening and darkening the edges of the image. Members width
+	 * and height of raise_info define the width of the vertical and
 	 * horizontal edge of the effect.
 	 * @params rect	Define the dimensions of the area to raise.
 	 * @params raise	A value other than zero creates a 3-D raise effect, otherwise it has a lowered effect.
 	 */
-	public function raise( x : Int, y : Int, w : Int, h : Int, raise : Bool ) : Bool
+	public function raise(x:Int, y:Int, w:Int, h:Int, raise:Bool) : Bool
 	{
-		return nMagick_raise( __m, { x : x, y : y, w : w, h : h }, raise );
+		return nMagick_raise(__m, { x : x, y : y, w : w, h : h }, raise);
 	}
 
 	/**
 	 * Reads an image or image sequence from a blob.
 	 * @params blob	The blob.
 	 */
-	public function loadBlob( blob : String ) : Bool
+	public function loadBlob(blob:String) : Bool
 	{
-		return nMagick_load_blob( __m, untyped blob.__s, blob.length );
+		return nMagick_load_blob(__m, untyped blob.__s, blob.length);
 	}
 
 	/**
-	 * smooths the contours of an image while still preserving edge 
-	 * information. The algorithm works by replacing each pixel with 
-	 * its neighbor closest in value. A neighbor is defined by radius. 
+	 * smooths the contours of an image while still preserving edge
+	 * information. The algorithm works by replacing each pixel with
+	 * its neighbor closest in value. A neighbor is defined by radius.
 	 * Use a radius of 0 and ReduceNoise() selects a suitable radius for you.
 	 * @params radius	The radius of the pixel neighborhood.
 	 */
-	public function reduceNoise( radius : Float ) : Bool
+	public function reduceNoise(radius:Float) : Bool
 	{
-		return nMagick_reduce_noise( __m, radius );
+		return nMagick_reduce_noise(__m, radius);
 	}
 
 	/**
 	 * resample image to desired resolution.
-	 * Most of the filters are FIR (finite impulse response), however, 
-	 * Bessel, Gaussian, and Sinc are IIR (infinite impulse response). 
+	 * Most of the filters are FIR (finite impulse response), however,
+	 * Bessel, Gaussian, and Sinc are IIR (infinite impulse response).
 	 * Bessel and Sinc are windowed (brought down to zero) with the Blackman filter.
 	 * @params x_resolution	The new image x resolution.
 	 * @params y_resolution	The new image y resolution.
 	 * @params filter		Image filter to use.
 	 * @params blur			The blur factor where > 1 is blurry, < 1 is sharp.
 	 */
-	public function resample( x : Int, y : Int, filter : ImagickFilter, blur : Float ) : Bool
+	public function resample(x:Int, y:Int, filter:ImagickFilter, blur:Float) : Bool
 	{
-		return nMagick_resample( __m, x, y, Type.enumIndex( filter ), blur );
+		return nMagick_resample(__m, x, y, Type.enumIndex(filter), blur);
 	}
 
 	/**
@@ -1105,33 +1105,33 @@ class Imagick
 	 * @params x		The x offset.
 	 * @params y		The y offset.
 	 */
-	public function roll( x : Int, y : Int ) : Bool
+	public function roll(x:Int, y:Int) : Bool
 	{
-		return nMagick_roll( __m, x, y );
+		return nMagick_roll(__m, x, y);
 	}
 
 	/**
-	 * Rotates an image the specified number of degrees. Empty triangles 
-	 * left over from rotating the image are filled with the 
+	 * Rotates an image the specified number of degrees. Empty triangles
+	 * left over from rotating the image are filled with the
 	 * background color.
 	 * @params background	The background pixel wand.
 	 * @params degrees		The number of degrees to rotate the image.
 	 */
-	public function rotate( background : ImagickPixel, degrees : Float ) : Bool
+	public function rotate(background:ImagickPixel, degrees:Float) : Bool
 	{
-		return nMagick_rotate( __m, untyped background.__d, degrees );
+		return nMagick_rotate(__m, untyped background.__d, degrees);
 	}
 
 	/**
-	 * scales an image to the desired dimensions with pixel sampling. 
-					Unlike other scaling methods, this method does not introduce any 
+	 * scales an image to the desired dimensions with pixel sampling.
+					Unlike other scaling methods, this method does not introduce any
 					additional color into the scaled image.
 	 * @params columns		The number of columns in the scaled image.
 	 * @params rows		The number of rows in the scaled image.
 	 */
-	public function sample( w : Int, h : Int ) : Bool
+	public function sample(w:Int, h:Int) : Bool
 	{
-		return nMagick_sample( __m, w, h );
+		return nMagick_sample(__m, w, h);
 	}
 
 	/**
@@ -1139,22 +1139,22 @@ class Imagick
 	 * @params columns		The number of columns in the scaled image.
 	 * @params rows		The number of rows in the scaled image.
 	 */
-	public function scale( w : Int, h : Int ) : Bool
+	public function scale(w:Int, h:Int) : Bool
 	{
-		return nMagick_scale( __m, w, h );
+		return nMagick_scale(__m, w, h);
 	}
 
 	/**
-	 * applies a special effect to the image, similar to the effect 
-	 * achieved in a photo darkroom by sepia toning. Threshold ranges 
-	 * from 0 to QuantumRange and is a measure of the extent of the 
-	 * sepia toning. A threshold of 80 is a good starting point for a 
+	 * applies a special effect to the image, similar to the effect
+	 * achieved in a photo darkroom by sepia toning. Threshold ranges
+	 * from 0 to QuantumRange and is a measure of the extent of the
+	 * sepia toning. A threshold of 80 is a good starting point for a
 	 * reasonable tone.
 	 * @params threshold	Define the extent of the sepia toning.
 	 */
-	public function solarize( threshold : Float ) : Bool
+	public function solarize(threshold:Float) : Bool
 	{
-		return nMagick_solarize( __m, threshold );
+		return nMagick_solarize(__m, threshold);
 	}
 
 	/**
@@ -1162,31 +1162,31 @@ class Imagick
 	 * @params cols	width of the image.
 	 * @params rows	height of the image.
 	 */
-	public function setExtent( w : Int, h : Int ) : Bool
+	public function setExtent(w:Int, h:Int) : Bool
 	{
-		return nMagick_set_extent( __m, w, h );
+		return nMagick_set_extent(__m, w, h);
 	}
 
 	/**
 	 * Sets the image filename.
 	 * @params Filename	The filename to set for the image.
 	 */
-	public function setFileName( filename : String ) : Bool
+	public function setFileName(filename:String) : Bool
 	{
-		return nMagick_set_filename( __m, untyped filename.__s );
+		return nMagick_set_filename(__m, untyped filename.__s);
 	}
 
 	/**
-	 * Shines a distant light on an image to create a three-dimensional 
-	 * effect. You control the positioning of the light with azimuth and 
-	 * elevation; azimuth is measured in degrees off the x axis and 
+	 * Shines a distant light on an image to create a three-dimensional
+	 * effect. You control the positioning of the light with azimuth and
+	 * elevation; azimuth is measured in degrees off the x axis and
 	 * elevation is measured in pixels above the Z axis.
 	 * @params gray A value other than zero shades the intensity of each pixel.
 	 * @params azimuth, elevation	Define the light source direction.
 	 */
-	public function shine( grey : Bool, azimuth : Float, elevation : Float ) : Bool
+	public function shine(grey:Bool, azimuth : Float, elevation : Float) : Bool
 	{
-		return nMagick_shine( __m, grey, azimuth, elevation );
+		return nMagick_shine(__m, grey, azimuth, elevation);
 	}
 
 	/**
@@ -1195,61 +1195,61 @@ class Imagick
 	 * @params sigma	The standard deviation of the Gaussian, in pixels.
 	 * @params point	The shadow offset.
 	 */
-	public function shadow( radius : Float, sigma : Float, point : ImagickPoint ) : Bool
+	public function shadow(radius:Float, sigma:Float, point:ImagickPoint) : Bool
 	{
-		return nMagick_shadow( __m, radius, sigma, point );
+		return nMagick_shadow(__m, radius, sigma, point);
 	}
 
 	/**
-	 * Sharpens an image. We convolve the image with a Gaussian operator 
-	 * of the given radius and standard deviation (sigma). For reasonable 
-	 * results, the radius should be larger than sigma. Use a radius of 0 
+	 * Sharpens an image. We convolve the image with a Gaussian operator
+	 * of the given radius and standard deviation (sigma). For reasonable
+	 * results, the radius should be larger than sigma. Use a radius of 0
 	 * and MagickSharpenImage() selects a suitable radius for you.
 	 * @params radius	The radius of the Gaussian, in pixels, not counting the center pixel.
 	 * @params sigma	The standard deviation of the Gaussian, in pixels.
 	 */
-	public function sharpen( radius : Float, sigma : Float ) : Bool
+	public function sharpen(radius:Float, sigma:Float) : Bool
 	{
-		return nMagick_sharpen( __m, radius, sigma );
+		return nMagick_sharpen(__m, radius, sigma);
 	}
 
 	/**
-	 * shaves pixels from the image edges. It allocates the memory 
+	 * shaves pixels from the image edges. It allocates the memory
 	 * necessary for the new Image structure and returns a pointer to the new image.
 	 * @params cols	The number of columns in the scaled image.
 	 * @params rows	The number of rows in the scaled image.
 	 */
-	public function shave( w : Int, h : Int ) : Bool
+	public function shave(w:Int, h:Int) : Bool
 	{
-		return nMagick_shave( __m, w, h );
+		return nMagick_shave(__m, w, h);
 	}
 
 	/**
-	 * slides one edge of an image along the X or Y axis, creating a 
-	 * parallelogram. An X direction shear slides an edge along the X axis, 
-	 * while a Y direction shear slides an edge along the Y axis. The amount 
-	 * of the shear is controlled by a shear angle. For X direction shears, 
-	 * x_shear is measured relative to the Y axis, and similarly, for Y 
-	 * direction shears y_shear is measured relative to the X axis. Empty 
-	 * triangles left over from shearing the image are filled with the 
+	 * slides one edge of an image along the X or Y axis, creating a
+	 * parallelogram. An X direction shear slides an edge along the X axis,
+	 * while a Y direction shear slides an edge along the Y axis. The amount
+	 * of the shear is controlled by a shear angle. For X direction shears,
+	 * x_shear is measured relative to the Y axis, and similarly, for Y
+	 * direction shears y_shear is measured relative to the X axis. Empty
+	 * triangles left over from shearing the image are filled with the
 	 * background color.
 	 * @params background	The background pixel wand.
 	 * @params x_shear		The number of degrees to shear the image.
 	 * @params y_shear		The number of degrees to shear the image.
 	 */
-	public function shear( background : ImagickPixel, x : Int, y : Int ) : Bool
+	public function shear(background:ImagickPixel, x:Int, y:Int) : Bool
 	{
-		return nMagick_shear( __m, untyped background.__d, x, y );
+		return nMagick_shear(__m, untyped background.__d, x, y);
 	}
 
 	/**
-	 * composites two images and produces a single image that is the 
+	 * composites two images and produces a single image that is the
 	 * composite of a left and right image of a stereo pair.
 	 * @params offset_wand		Another image wand.
 	 */
-	public function stereo( offset_wand : Imagick ) : Bool
+	public function stereo(offset_wand:Imagick) : Bool
 	{
-		return nMagick_stereo( __m, untyped offset_wand.__m );
+		return nMagick_stereo(__m, untyped offset_wand.__m);
 	}
 
 	/**
@@ -1257,87 +1257,87 @@ class Imagick
 	 */
 	public function strip()
 	{
-		return nMagick_strip( __m );
+		return nMagick_strip(__m);
 	}
 
 	/**
-	 * Swirls the pixels about the center of the image, where degrees 
-	 * indicates the sweep of the arc through which each pixel is moved. 
+	 * Swirls the pixels about the center of the image, where degrees
+	 * indicates the sweep of the arc through which each pixel is moved.
 	 * You get a more dramatic effect as the degrees move from 1 to 360.
 	 * @params degrees		The amount to swirl.
 	 */
-	public function swirl( degrees : Float ) : Bool
+	public function swirl(degrees:Float) : Bool
 	{
-		return nMagick_swirl( __m, degrees );
+		return nMagick_swirl(__m, degrees);
 	}
 
 	/**
 	 * Repeatedly tiles the texture image across and down the image canvas.
 	 * @params texture_wand	The texture wand.
 	 */
-	public function texture( txtr : Imagick ) : Bool
-	{		
-		return nMagick_texture( __m, untyped txtr.__m );
+	public function texture(txtr:Imagick) : Bool
+	{
+		return nMagick_texture(__m, untyped txtr.__m);
 	}
 
 	/**
-	 * Changes the value of individual pixels based on the intensity of 
-	 * each pixel compared to threshold. The result is a high-contrast, 
+	 * Changes the value of individual pixels based on the intensity of
+	 * each pixel compared to threshold. The result is a high-contrast,
 	 * two color image.
 	 * @params threshold	Define the threshold value.
 	 */
-	public function threshold( t : Float ) : Bool
+	public function threshold(t:Float) : Bool
 	{
-		return nMagick_threshold( __m, t );
+		return nMagick_threshold(__m, t);
 	}
 
 	/**
-	 * Applies a color vector to each pixel in the image. The length of the 
-	 * vector is 0 for black and white and at its maximum for the midtones. 
+	 * Applies a color vector to each pixel in the image. The length of the
+	 * vector is 0 for black and white and at its maximum for the midtones.
 	 * The vector weighting function is f(x)=(1-(4.0*((x-0.5)*(x-0.5)))).
 	 * @params tint	The tint pixel wand.
 	 * @params opacity	The opacity pixel wand.
 	 */
-	public function tint( t : ImagickPixel, o : ImagickPixel ) : Bool
+	public function tint(t:ImagickPixel, o:ImagickPixel) : Bool
 	{
-		return nMagick_tint( __m, untyped t.__d, untyped o.__d );
+		return nMagick_tint(__m, untyped t.__d, untyped o.__d);
 	}
 
 	/**
-	 * creates a "ripple" effect in the image by shifting the pixels 
-	 * vertically along a sine wave whose amplitude and wavelength is 
+	 * creates a "ripple" effect in the image by shifting the pixels
+	 * vertically along a sine wave whose amplitude and wavelength is
 	 * specified by the given parameters.
 	 * @params amplitude	Define the amplitude of the sine wave.
 	 * @params length	Define the wave length of the sine wave.
 	 */
-	public function wave( a : Float, l : Float ) : Bool
+	public function wave(a:Float, l : Float) : Bool
 	{
-		return nMagick_wave( __m, a, l );
+		return nMagick_wave(__m, a, l);
 	}
 	
 	/*public function getPalette() : Array<String>
 	{
-		return neko.Lib.nekoToHaxe( nMagick_get_palette( __m ) );
+		return neko.Lib.nekoToHaxe(nMagick_get_palette(__m));
 	}*/
 	
-	public function whiteThreshold( thresold:ImagickPixel )
+	public function whiteThreshold(thresold:ImagickPixel)
 	{
-		nMagick_white_threshold( __m, thresold.__d );
+		nMagick_white_threshold(__m, thresold.__d);
 	}
 
-	public function matteFloodFill( alpha:Float, fuzz:Float, color:ImagickPixel, x:Int, y:Int )
+	public function matteFloodFill(alpha:Float, fuzz:Float, color:ImagickPixel, x:Int, y:Int)
 	{
-		nMagick_matte_flood_fill( __m, alpha, fuzz, color.__d, x, y);
+		nMagick_matte_flood_fill(__m, alpha, fuzz, color.__d, x, y);
 	}
 	
 	public function iteratePixels(f:Int->Int->ImagickPixel->Void, x=0, y=0, w=-1, h=-1) : Void
     {
-        nMagick_iterate_pixels( __m, function( x:Int, y:Int, hPixel:ImagickPixelHandle ) f(x, y, new neko.imagemagick.ImagickPixel(null, hPixel)), x, y, w, h );
+        nMagick_iterate_pixels(__m, function(x:Int, y:Int, hPixel:ImagickPixelHandle) f(x, y, new neko.imagemagick.ImagickPixel(null, hPixel)), x, y, w, h);
     }
 	
 	public function clone() : Imagick
 	{
-		return new Imagick(null, nMagick_clone( __m ));
+		return new Imagick(null, nMagick_clone(__m));
 	}
 	
 	static var nMagick_init = neko.Lib.load("nMagick","nMagick_init",0);
