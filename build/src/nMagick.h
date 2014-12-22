@@ -46,4 +46,8 @@
 
  extern int objCount;
 
+ #ifndef BOOL
+  #define BOOL int
+ #endif
+
 #endif
