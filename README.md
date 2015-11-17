@@ -1,26 +1,35 @@
-# ImageMagick haxelib
+# ImageMagick haxe library
 
-Installation:
-
-    haxelib install ImageMagick
+### Installation:
+```shell
+haxelib install ImageMagick
+```
 
 Then include this in your hxml files:
+```
+-lib ImageMagick
+```
 
-    -lib ImageMagick
+You will need to ensure the appropriate `*.ndll` for your platform is in your `$NEKOPATH`.
 
-You will need to ensure the appropriate `ndll` for your platform is in your `$NEKOPATH`.
 
-### Compiling the NDLL
+### How to update (recompile) the NDLL
 
-* Clone the sources:  
-  `hg clone https://jasononeil@bitbucket.org/yar3333/haxe-imagemagick`
+* Download or clone the sources:
+	```shell
+	hg clone https://bitbucket.org/yar3333/haxe-imagemagick
+	```
 * Ensure you have the dev libraries installed. On Ubuntu:  
-  `apt-get install libmagickcore-dev libmagickwand-dev neko-dev`.
-* Edit `build/Makefile`, changing path to ImageMagick header files on your machine, if needed.  Eg `/usr/include/ImageMagick`.
-* Build:  
-  `make`
-* Copy the ndll to your neko path:  
-  `sudo cp library/ndll/Linux64/nMagick.ndll /usr/lib/neko/`
+	```shell
+	apt-get install libmagickcore-dev libmagickwand-dev neko-dev
+	```
+* Edit `build/Makefile`, changing path to ImageMagick header files on your machine, if needed (`/usr/include/ImageMagick`)
+* Goto `build` folder and run:  
+	```shell
+	make
+	```
+* Result NDLL file must appeare in `library/ndll/PLATFORM`
+
 
 ### Contribution guidelines
 
