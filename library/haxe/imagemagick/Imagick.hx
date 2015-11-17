@@ -176,6 +176,15 @@ class Imagick
 		#end
 	}
 	
+	public function setCompressionQuality(quality:Int)
+	{
+		#if php
+		return pimg.setImageCompressionQuality(quality);
+		#elseif neko
+		return nimg.setCompressionQuality(quality);
+		#end
+	}
+	
 	public function iteratePixels(f:Int->Int->ImagickPixel->Void, x=0, y=0, w=-1, h=-1)
     {
         #if php
