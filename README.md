@@ -12,6 +12,11 @@ Then include this in your hxml files:
 
 You will need to ensure the appropriate `*.ndll` for your platform is in your `$NEKOPATH`.
 
+### ImageMagick versions
+
+* Windows: need `CORE_RL_wand_.dll` and dependencies from `ImageMagick-6.6.2-Q16`
+* Linux: need `libMagickWand.so.5` from `libmagickwand5` package
+
 
 ### How to update (recompile) the NDLL
 
