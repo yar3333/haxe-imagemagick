@@ -4,8 +4,8 @@
   "tags": ["php","neko","Imagick","ImageMagick"],
   "description": "ImageMagick bindings for neko/php. Based on the Lee McColl Sylvester's (lee@designrealm.co.uk) nMagick project.",
   "contributors": ["yar3333"],
-  "releasenote": "Recomplie linux ndll (now use `libMagickWand.so.5` from `libmagickwand5` package).",
-  "version": "1.6.3",
+  "releasenote": "Add ImageMagick sources for build.",
+  "version": "1.6.4",
   "url": "https://bitbucket.org/yar3333/haxe-imagemagick",
   "dependencies": {}
 }
